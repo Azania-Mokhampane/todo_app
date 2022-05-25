@@ -8,10 +8,10 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Todo App</title>
         <meta
           name="description"
-          content="A ToDo app that allows users to add, edit, and delete tasks they want to work on, and also mark tasks as complete"
+          content="A Todo app that allows users to add, edit, and delete tasks they want to work on, and also mark tasks as complete"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
