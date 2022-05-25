@@ -9,7 +9,7 @@ function LandingPage() {
         <div className={styles.home_icon}>
           <img src="img/note-list.svg" alt="intro-pic" />
         </div>
-        <div>
+        <div className={styles.home_header}>
           <h1>
             Welcome to <span>My Todo</span>
           </h1>

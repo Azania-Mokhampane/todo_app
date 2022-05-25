@@ -5,18 +5,18 @@
   justify-items: center;
 }
 
-.home_container div h1 {
+.home_header h1 {
   font-size: 24px;
   line-height: 32px;
   padding-bottom: 20px;
 }
 
-.home_container div h1 span {
+.home_header h1 span {
   display: block;
   font-weight: 700;
 }
 
-.home_container div p {
+.home_header p {
   font-size: 18px;
   line-height: 28px;
 }
@@ -53,4 +53,40 @@
 .home_button button:hover {
   background-color: #f472b6;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .home_container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home_icon {
+    order: 2;
+    /* height: 100vh; */
+  }
+  .home_header {
+    display: grid;
+    justify-content: center;
+    order: 1;
+  }
+  .home_header h1 {
+    font-size: 55px;
+  }
+  .home_header h1 span {
+    font-size: 35px;
+    padding-top: 20px;
+  }
+  .home_header p {
+    font-size: 26px;
+  }
+  .home_button {
+    order: 3;
+  }
+  .home_icon img {
+    max-width: 190%;
+  }
 }
