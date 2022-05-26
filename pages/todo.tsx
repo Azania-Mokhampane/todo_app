@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import TodoForm from "./components/todoForm";
+import TodoForm from "../components/todoForm";
 import Link from "next/link";
-import TodoList from "./components/todoList";
-import AddButton from "./components/UI/addButton";
+import TodoList from "../components/todoList";
+import AddButton from "../components/UI/addButton";
 
 type ITodos = {
   todo: string;
@@ -37,7 +37,7 @@ const Todo = () => {
 
   return (
     <>
-      <div className="text-center font-bold text-2xl">
+      <div className="pt-3 text-center font-bold text-2xl">
         <Link href="/">
           <h1>My Todo</h1>
         </Link>
@@ -47,9 +47,10 @@ const Todo = () => {
         <TodoForm hideForm={hideForm} onSaveTodo={onSaveTodo} />
       )}
 
-      {todoData.map((items: ITodos) => (
+      {/* {todoData.map((items: ITodos) => (
         <TodoList key={items.id} id={items.id} todo={items.todo} />
-      ))}
+      ))} */}
+      <TodoList data={todoData} />
       <AddButton showForm={showForm} />
     </>
   );
