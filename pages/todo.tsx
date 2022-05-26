@@ -48,7 +48,7 @@ const Todo = () => {
       )}
 
       {todoData.map((items: ITodos) => (
-        <TodoList id={items.id} todo={items.todo} />
+        <TodoList key={items.id} id={items.id} todo={items.todo} />
       ))}
       <AddButton showForm={showForm} />
     </>
