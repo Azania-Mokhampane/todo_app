@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../../../styles/Home.module.css";
+import classes from "../../styles/Home.module.css";
 import { IoIosAdd } from "react-icons/io";
 
 const AddButton = ({ showForm }: any) => {
