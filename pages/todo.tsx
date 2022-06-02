@@ -1,38 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "../components/todoForm";
 import Link from "next/link";
 import TodoList from "../components/todoList";
-import AddButton from "../components/UI/addButton";
 
 type ITodos = {
   todo: string;
   id: string;
 };
 
-type TodoTypes = {
-  todo: string;
-  id: string;
-};
-
 const Todo = () => {
-  const [todoData, setTodoData] = useState<TodoTypes[]>([]); //users todo data will be store in the todoData Array
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
 
-  const showForm = () => {
-    setIsFormVisible(true);
-  };
-  const hideForm = () => {
-    setIsFormVisible(false);
-  };
+  //getting the todo list
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("Todos")!);
+    if (todos) {
+      setTodoData(todos);
+    }
+  }, []);
+
+  //saving the todo list
+  useEffect(() => {
+    localStorage.setItem("Todos", JSON.stringify(todoData));
+  }, [todoData]);
+
   const onSaveTodo = (todos: ITodos) => {
-    //
     const TodoData = [...todoData];
     TodoData.push(todos);
-    // setExpenses(EXPENSES);
-
     setTodoData(TodoData);
-    todoData.reverse();
-    console.log(todoData);
+  };
+
+  const handleDelete = (todo: any) => {
+    const UpdatedList = todoData.filter(
+      (todoItem) => todoData.indexOf(todoItem) != todoData.indexOf(todo)
+    );
+    setTodoData(UpdatedList);
+    console.log(UpdatedList);
   };
 
   return (
@@ -43,15 +46,9 @@ const Todo = () => {
         </Link>
       </div>
 
-      {isFormVisible && (
-        <TodoForm hideForm={hideForm} onSaveTodo={onSaveTodo} />
-      )}
+      <TodoForm onSaveTodo={onSaveTodo} />
 
-      {/* {todoData.map((items: ITodos) => (
-        <TodoList key={items.id} id={items.id} todo={items.todo} />
-      ))} */}
-      <TodoList data={todoData} />
-      <AddButton showForm={showForm} />
+      <TodoList delete={handleDelete} data={todoData} />
     </>
   );
 };
