@@ -17,7 +17,12 @@ const TodoList = (props: any) => {
         </div>
       ) : (
         props.data.map((items: ITODOS) => (
-          <TodoItem key={items.id} id={items.id} todo={items.todo} />
+          <TodoItem
+            key={items.id}
+            id={items.id}
+            todo={items.todo}
+            delete={props.delete}
+          />
         ))
       )}
     </>
