@@ -16,8 +16,8 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <LandingPage /> */}
-      <Todo />
+      <LandingPage />
+      {/* <Todo /> */}
     </div>
   );
 };
