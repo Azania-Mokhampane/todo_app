@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import TodoForm from "../components/todoForm";
 import Link from "next/link";
 import TodoList from "../components/todoList";
+import { IoIosArrowBack } from "react-icons/io";
+import ColorMode from "../components/UI/colorMode";
 
 type ITodos = {
   todo: string;
@@ -40,10 +42,18 @@ const Todo = () => {
 
   return (
     <>
-      <div className="pt-3 text-center font-bold text-2xl">
-        <Link href="/">
+      <div className=" flex flex-row pt-3 text-center font-bold text-2xl">
+        <div className="flex justify-start pl-2 pt-2">
+          <Link href="/">
+            <IoIosArrowBack />
+          </Link>
+        </div>
+        <div className=" flex items-center justify-center w-screen">
           <h1>My Todo</h1>
-        </Link>
+        </div>
+        <div className="flex justify-start pr-2 pt-1">
+          <ColorMode />
+        </div>
       </div>
 
       <TodoForm onSaveTodo={onSaveTodo} />
