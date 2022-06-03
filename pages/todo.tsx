@@ -32,12 +32,13 @@ const Todo = () => {
     setTodoData(TodoData);
   };
 
-  const handleDelete = (todo: any) => {
-    const UpdatedList = todoData.filter(
-      (todoItem) => todoData.indexOf(todoItem) != todoData.indexOf(todo)
-    );
-    setTodoData(UpdatedList);
-    console.log(UpdatedList);
+  //deleting the todo item
+
+  const handleDelete = () => {
+    localStorage.removeItem("Todos");
+    const TodoData = [...todoData];
+    TodoData.pop();
+    setTodoData(TodoData);
   };
 
   return (
