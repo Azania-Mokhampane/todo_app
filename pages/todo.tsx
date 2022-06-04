@@ -33,12 +33,11 @@ const Todo = () => {
   };
 
   //deleting the todo item
-
-  const handleDelete = () => {
+  const handleDelete = (index: any) => {
     localStorage.removeItem("Todos");
-    const TodoData = [...todoData];
-    TodoData.pop();
-    setTodoData(TodoData);
+    let newList = todoData;
+    newList.splice(index, 1);
+    setTodoData([...newList]);
   };
 
   return (
