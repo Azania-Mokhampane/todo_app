@@ -57,7 +57,8 @@ const Todo = () => {
       </div>
 
       <TodoForm onSaveTodo={onSaveTodo} />
-
+      {/* {} */}
+      {/* <p>You have {todoData.length} tasks</p> */}
       <TodoList delete={handleDelete} data={todoData} />
     </>
   );
