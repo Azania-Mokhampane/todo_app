@@ -13,6 +13,8 @@ type ITodos = {
 const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
 
+  const tasks = todoData.length;
+
   //getting the todo list
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("Todos")!);
@@ -57,8 +59,13 @@ const Todo = () => {
       </div>
 
       <TodoForm onSaveTodo={onSaveTodo} />
-      {/* {} */}
-      {/* <p>You have {todoData.length} tasks</p> */}
+      {tasks === 0 ? null : tasks === 1 ? (
+        <p className="text-center py-3 text-lg">
+          You have {tasks} task remaining
+        </p>
+      ) : (
+        <p className="text-center py-3">You have {tasks} tasks remaining</p>
+      )}
       <TodoList delete={handleDelete} data={todoData} />
     </>
   );
