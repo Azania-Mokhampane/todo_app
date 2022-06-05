@@ -17,13 +17,15 @@ const TodoList = (props: any) => {
         </div>
       ) : (
         props.data.map((items: any, index: any) => (
-          <TodoItem
-            key={items.id}
-            id={items.id}
-            todo={items.todo}
-            delete={props.delete}
-            index={index}
-          />
+          <>
+            <TodoItem
+              key={items.id}
+              id={items.id}
+              todo={items.todo}
+              delete={props.delete}
+              index={index}
+            />
+          </>
         ))
       )}
     </>

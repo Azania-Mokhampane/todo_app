@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import AddButton from "./UI/addButton";
 import ModalCard from "./UI/modal";
+import Button from "./UI/button";
 
 const TodoForm = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,19 +53,23 @@ const TodoForm = (props: any) => {
               />
             </div>
             <div className="flex flex-row pt-5 justify-center gap-8 text-white">
-              <button
+              {/* <button
                 className="bg-pink-500 rounded-md p-1 w-20 hover:bg-pink-600  font-semibold"
                 type="submit"
               >
-                Add Task
-              </button>
-              <button
+                
+              </button> */}
+              <Button type="submit">Add Task</Button>
+              {/* <button
                 className="bg-pink-500 rounded-md p-1 w-20 hover:bg-pink-600 font-semibold"
                 onClick={onCloseHandler}
                 type="button"
               >
                 Cancel
-              </button>
+              </button> */}
+              <Button onClick={onCloseHandler} type="button">
+                Cancel
+              </Button>
             </div>
           </form>
         </div>
