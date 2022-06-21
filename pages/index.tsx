@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import LandingPage from "../components/landingPage";
-import Todo from "./todo";
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +15,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LandingPage />
-      {/* <Todo /> */}
     </div>
   );
 };
