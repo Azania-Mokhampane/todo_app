@@ -4,6 +4,7 @@ import Link from "next/link";
 import TodoList from "../components/todoList";
 import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
+import { Button } from "@chakra-ui/react";
 
 type ITodos = {
   todo: string;
@@ -12,6 +13,8 @@ type ITodos = {
 
 const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
+
+  const tasks = todoData.length;
 
   //getting the todo list
   useEffect(() => {
@@ -41,26 +44,34 @@ const Todo = () => {
   };
 
   return (
-    <>
-      <div className=" flex flex-row pt-3 text-center font-bold text-2xl">
-        <div className="flex justify-start pl-2 pt-2">
-          <Link href="/">
-            <IoIosArrowBack />
-          </Link>
+    <div className="max-w-4xl m-auto">
+      <div className=" flex justify-between  mx-2 pt-3 text-center font-bold text-2xl">
+        <div className="">
+          {/* transition duration-300 ease-in-out bg-gray-700 rounded-md rounde-md cursor-pointer hover:bg-gray-600 hover:rounded-md */}
+          <Button w="fit-content" _focus={{ boxShadow: "none" }}>
+            <Link href="/">
+              <IoIosArrowBack className="text-2xl" />
+            </Link>
+          </Button>
         </div>
-        <div className=" flex items-center justify-center w-screen">
+        <div>
           <h1>My Todo</h1>
         </div>
-        <div className="flex justify-start pr-2 pt-1">
+        <div className="">
           <ColorMode />
         </div>
       </div>
 
       <TodoForm onSaveTodo={onSaveTodo} />
-      {/* {} */}
-      {/* <p>You have {todoData.length} tasks</p> */}
+      {tasks === 0 ? null : tasks === 1 ? (
+        <p className="text-center py-3 text-lg">
+          You have {tasks} task remaining
+        </p>
+      ) : (
+        <p className="text-center py-3">You have {tasks} tasks remaining</p>
+      )}
       <TodoList delete={handleDelete} data={todoData} />
-    </>
+    </div>
   );
 };
 
