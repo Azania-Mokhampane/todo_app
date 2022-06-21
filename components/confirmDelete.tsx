@@ -22,7 +22,10 @@ const Delete = (props: any) => {
           </div>
         </div>
       </ModalCard>
-      <button onClick={onOpen}>
+      <button
+        className="transition ease-in-out  hover:scale-150 text-xl md:text-3xl duration-300"
+        onClick={onOpen}
+      >
         <MdDeleteSweep />
       </button>
     </>
