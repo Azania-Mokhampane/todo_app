@@ -4,7 +4,10 @@ import { useDisclosure } from "@chakra-ui/react";
 import { MdDeleteSweep } from "react-icons/md";
 import Button from "./UI/button";
 
-const Delete = (props: any) => {
+interface Type {
+  deleteTodo: () => void;
+}
+const Delete = (props: Type) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>

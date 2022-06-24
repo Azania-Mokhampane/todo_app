@@ -1,7 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 
-const ModalCard = (props: any) => {
+interface PropType {
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
+  onOpen: () => void;
+}
+const ModalCard = (props: PropType) => {
   return (
     <>
       <Modal isOpen={props.isOpen} onClose={props.onClose}>

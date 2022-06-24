@@ -3,7 +3,14 @@ import Delete from "./confirmDelete";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 
-const TodoItem = (props: any) => {
+interface TodoItemTypes {
+  id: string;
+  todo: string;
+  index: number;
+  delete: (index: number) => void;
+}
+
+const TodoItem = (props: TodoItemTypes) => {
   const [complete, setcomplete] = useState(false);
   const deleteTodo = () => {
     props.delete(props.index);
