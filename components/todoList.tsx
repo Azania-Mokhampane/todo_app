@@ -2,12 +2,15 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import TodoItem from "./todoItems";
 
-type ITODOS = {
-  todo: string;
+interface PropTypes {
+  data: DataType[];
+  delete: (index: number) => void;
+}
+interface DataType {
   id: string;
-};
-
-const TodoList = (props: any) => {
+  todo: string;
+}
+const TodoList = (props: PropTypes) => {
   return (
     <>
       {props.data.length == 0 ? (
@@ -16,7 +19,7 @@ const TodoList = (props: any) => {
           <p>Seems like you have nothing to do yet :-(</p>
         </div>
       ) : (
-        props.data.map((items: any, index: any) => (
+        props.data.map((items, index) => (
           <>
             <TodoItem
               key={items.id}
