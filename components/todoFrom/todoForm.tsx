@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import AddButton from "./UI/addButton";
-import ModalCard from "./UI/modal";
-import Button from "./UI/button";
+import AddButton from "../UI/addButton";
+import ModalCard from "../UI/modal";
+import Button from "../UI/button";
 
 interface SaveTodoType {
   onSaveTodo: (arg0: { todo: string; id: string }) => void;
 }
 
-const TodoForm = (props: SaveTodoType) => {
+const TodoForm = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [task, setTask] = useState("");
 
   const onCloseHandler = () => {
     setTask("");
-    onClose();
+    props.onClose();
   };
 
   //evoked when the form submits

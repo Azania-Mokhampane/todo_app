@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import Delete from "./confirmDelete";
+import Delete from "../actions/confirmDelete";
 import { RiCheckboxCircleFill } from "react-icons/ri";
-import { FiEdit } from "react-icons/fi";
+import EditTodo from "../actions/editTodo";
+import { TodoListTypes } from "../../utils/types";
 
-interface TodoItemTypes {
-  id: string;
-  todo: string;
-  index: number;
-  delete: (index: number) => void;
-}
-
-const TodoItem = (props: TodoItemTypes) => {
+const TodoItem = (props: TodoListTypes) => {
   const [complete, setcomplete] = useState(false);
   const deleteTodo = () => {
     props.delete(props.index);
@@ -28,12 +22,10 @@ const TodoItem = (props: TodoItemTypes) => {
       >
         <h1 className=" font-semibold ">{props.todo}</h1>
         <div className="flex flex-row gap-4 ">
-          <button className="transition ease-in-out  hover:scale-150 text-xl md:text-2xl duration-300">
-            <FiEdit />
-          </button>
+          <EditTodo value={props.editVal} edit={props.edit} />
           <button
             onClick={Done}
-            className="transition ease-in-out  hover:scale-150 text-xl md:text-2xl duration-300"
+            className="transition ease-in-out  md:hover:scale-150 text-xl md:text-2xl duration-300"
           >
             {!complete ? (
               <RiCheckboxCircleFill />
