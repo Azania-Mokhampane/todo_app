@@ -1,8 +1,8 @@
 import React from "react";
-import ModalCard from "./UI/modal";
+import ModalCard from "../UI/modal";
 import { useDisclosure } from "@chakra-ui/react";
 import { MdDeleteSweep } from "react-icons/md";
-import Button from "./UI/button";
+import Button from "../UI/button";
 
 interface Type {
   deleteTodo: () => void;
@@ -26,7 +26,7 @@ const Delete = (props: Type) => {
         </div>
       </ModalCard>
       <button
-        className="transition ease-in-out  hover:scale-150 text-xl md:text-3xl duration-300"
+        className="transition ease-in-out  md:hover:scale-150 text-xl md:text-3xl duration-300"
         onClick={onOpen}
       >
         <MdDeleteSweep />

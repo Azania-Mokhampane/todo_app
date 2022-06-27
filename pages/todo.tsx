@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import TodoForm from "../components/todoForm";
+import TodoForm from "../components/todoFrom/todoForm";
 import Link from "next/link";
-import TodoList from "../components/todoList";
+import TodoList from "../components/todoFrom/todoList";
 import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
 import { Button } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import ModalCard from "../components/UI/modal";
+import EditTodo from "../components/actions/editTodo";
+import SearchBar from "../components/UI/searchbar";
 
 type ITodos = {
   todo: string;
@@ -13,6 +17,9 @@ type ITodos = {
 
 const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
+  const [editVal, setEditVal] = useState<string | undefined>();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const tasks = todoData.length;
 
@@ -39,8 +46,16 @@ const Todo = () => {
   const handleDelete = (index: number) => {
     localStorage.removeItem("Todos");
     let newList = todoData;
-    newList.splice(index, 1);
+    newList.splice(index, 1); //removes an element from an array
     setTodoData([...newList]);
+  };
+
+  //updating the todo
+  const editHandler = (id: string) => {
+    // const filteredItem = todoData.filter((item) => item.id !== id);
+    const selectedItem = todoData.find((item) => item.id === id);
+    setEditVal(selectedItem?.todo);
+    // onOpen();
   };
 
   return (
@@ -62,6 +77,8 @@ const Todo = () => {
         </div>
       </div>
 
+      <SearchBar data={todoData} />
+
       <TodoForm onSaveTodo={onSaveTodo} />
       {tasks === 0 ? null : tasks === 1 ? (
         <p className="text-center py-3 text-lg">
@@ -70,7 +87,15 @@ const Todo = () => {
       ) : (
         <p className="text-center py-3">You have {tasks} tasks remaining</p>
       )}
-      <TodoList delete={handleDelete} data={todoData} />
+      <TodoList
+        editVal={editVal}
+        edit={editHandler}
+        delete={handleDelete}
+        data={todoData}
+        id={""}
+        todo={""}
+        index={0}
+      />
     </div>
   );
 };
