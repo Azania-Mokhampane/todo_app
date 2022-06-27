@@ -5,9 +5,6 @@ import TodoList from "../components/todoFrom/todoList";
 import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
 import { Button } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
-import ModalCard from "../components/UI/modal";
-import EditTodo from "../components/actions/editTodo";
 import SearchBar from "../components/UI/searchbar";
 
 type ITodos = {
@@ -19,7 +16,7 @@ const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
   const [editVal, setEditVal] = useState<string | undefined>();
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [toogleSearch, setToggleSearch] = useState<boolean>(true);
 
   const tasks = todoData.length;
 
@@ -58,6 +55,11 @@ const Todo = () => {
     // onOpen();
   };
 
+  //managing the todo list if searching
+  const searchHandler = () => {
+    setToggleSearch(true);
+  };
+
   return (
     <div className="max-w-4xl m-auto">
       <div className=" flex justify-between  mx-2 pt-3 text-center font-bold text-2xl">
@@ -77,7 +79,11 @@ const Todo = () => {
         </div>
       </div>
 
-      <SearchBar data={todoData} />
+      <SearchBar
+        showHandler={searchHandler}
+        show={toogleSearch}
+        data={todoData}
+      />
 
       <TodoForm onSaveTodo={onSaveTodo} />
       {tasks === 0 ? null : tasks === 1 ? (
