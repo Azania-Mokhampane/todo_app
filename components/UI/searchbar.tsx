@@ -5,6 +5,8 @@ import { DataType } from "../../utils/types";
 
 type Props = {
   data: DataType[];
+  show: boolean;
+  showHandler: () => void;
 };
 
 const SearchBar = (props: Props) => {
@@ -18,26 +20,49 @@ const SearchBar = (props: Props) => {
 
   const results = props.data && fuse.search(query);
 
-  //   console.log("Results :", results);
-  //   console.log("Data :", props.data);
   return (
     <>
-      <div className="flex flex-row w-full items-center justify-center py-3">
-        <div className="flex flex-row ring-1 gap-1 rounded-md p-1 w-8/12 md:w-2/5 lg:">
-          <div className="flex items-center">
-            <span>
-              <BiSearchAlt />
-            </span>
+      {props.data && props.data.length === 0 ? null : (
+        <div className="flex flex-row w-full items-center justify-center py-3">
+          <div className="flex flex-row ring-2 gap-2 rounded-md p-1 w-8/12 md:w-2/5 lg:">
+            <div className="flex items-center">
+              <span>
+                <BiSearchAlt />
+              </span>
+            </div>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="focus:outline-0 flex flex-row w-full bg-inherit"
+              placeholder="Search Todo.."
+            />
           </div>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="focus:outline-0"
-            placeholder="Search Todo.."
-          />
         </div>
-      </div>
+      )}{" "}
+      {results &&
+        results.map((item) => (
+          <div
+            key={item.item.id}
+            className="flex flex-row justify-between mx-auto bg-pink-300 p-3 pl-4 rounded-lg text-lg m-3 w-11/12"
+          >
+            <h1 className=" font-semibold ">{item.item.todo}</h1>
+            {/* <div className="flex flex-row gap-4 ">
+              <EditTodo value={props.editVal} edit={props.edit} />
+              <button
+                onClick={Done}
+                className="transition ease-in-out  md:hover:scale-150 text-xl md:text-2xl duration-300"
+              >
+                {!complete ? (
+                  <RiCheckboxCircleFill />
+                ) : (
+                  <RiCheckboxCircleFill className="text-green-500" />
+                )}
+              </button>
+              <Delete deleteTodo={deleteTodo} />
+            </div> */}
+          </div>
+        ))}
     </>
   );
 };
