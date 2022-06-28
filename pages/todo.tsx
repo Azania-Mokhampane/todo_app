@@ -6,6 +6,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
 import { Button } from "@chakra-ui/react";
 import SearchBar from "../components/UI/searchbar";
+import { initialState } from "../utils/store";
+import { useRecoilState } from "recoil";
 
 type ITodos = {
   todo: string;
@@ -15,6 +17,7 @@ type ITodos = {
 const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
   const [editVal, setEditVal] = useState<string | undefined>();
+  const [showResults, ___] = useRecoilState(initialState);
 
   const [toogleSearch, setToggleSearch] = useState<boolean>(true);
 
@@ -83,16 +86,21 @@ const Todo = () => {
         showHandler={searchHandler}
         show={toogleSearch}
         data={todoData}
+        editVal={editVal}
+        edit={editHandler}
       />
 
       <TodoForm onSaveTodo={onSaveTodo} />
-      {tasks === 0 ? null : tasks === 1 ? (
-        <p className="text-center py-3 text-lg">
-          You have {tasks} task remaining
-        </p>
-      ) : (
-        <p className="text-center py-3">You have {tasks} tasks remaining</p>
-      )}
+      {!showResults ? (
+        tasks === 0 ? null : tasks === 1 ? (
+          <p className="text-center py-3 text-lg">
+            You have {tasks} task remaining
+          </p>
+        ) : (
+          <p className="text-center py-3">You have {tasks} tasks remaining</p>
+        )
+      ) : null}
+
       <TodoList
         editVal={editVal}
         edit={editHandler}
