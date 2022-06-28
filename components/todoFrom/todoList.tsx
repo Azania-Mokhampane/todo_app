@@ -2,6 +2,8 @@ import React from "react";
 import styles from "../../styles/Home.module.css";
 import TodoItem from "./todoItems";
 import { DataType } from "../../utils/types";
+import { initialState } from "../../utils/store";
+import { useRecoilState } from "recoil";
 
 interface PropTypes {
   id: string;
@@ -14,6 +16,7 @@ interface PropTypes {
 }
 
 const TodoList = (props: PropTypes) => {
+  const [showResults, ___] = useRecoilState(initialState);
   return (
     <>
       {props.data.length == 0 ? (
@@ -24,15 +27,17 @@ const TodoList = (props: PropTypes) => {
       ) : (
         props.data.map((items, index) => (
           <>
-            <TodoItem
-              editVal={props.editVal}
-              id={items.id}
-              todo={items.todo}
-              delete={props.delete}
-              index={index}
-              edit={() => props.edit(items.id)}
-              data={props.data}
-            />
+            {!showResults && (
+              <TodoItem
+                editVal={props.editVal}
+                id={items.id}
+                todo={items.todo}
+                delete={props.delete}
+                index={index}
+                edit={() => props.edit(items.id)}
+                data={props.data}
+              />
+            )}
           </>
         ))
       )}
