@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import AddButton from "../UI/addButton";
+import AddButton from "../Buttons/addButton";
 import ModalCard from "../UI/modal";
-import Button from "../UI/button";
+import Button from "../Buttons/button";
 
 interface SaveTodoType {
   onSaveTodo: (arg0: { todo: string; id: string }) => void;

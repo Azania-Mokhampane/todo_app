@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import ModalCard from "../UI/modal";
-import Button from "../UI/button";
+import Button from "./button";
 import { FiEdit } from "react-icons/fi";
 
 interface PropTypes {

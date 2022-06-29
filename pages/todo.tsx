@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import TodoForm from "../components/todoFrom/todoForm";
+import TodoForm from "../components/TodoForm/todoForm";
 import Link from "next/link";
-import TodoList from "../components/todoFrom/todoList";
+import TodoList from "../components/TodoForm/todoList";
 import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
 import { Button } from "@chakra-ui/react";
-import SearchBar from "../components/UI/searchbar";
+import SearchBar from "../components/SearchBar";
 import { initialState } from "../utils/store";
 import { useRecoilState } from "recoil";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { Container } from "./styles";
 
 const LandingPage = () => {
   const router = useRouter();
