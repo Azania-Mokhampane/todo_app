@@ -58,12 +58,15 @@ const SearchBar = (props: Props) => {
         {results.length ? (
           <p>
             Found {results.length} {results.length === 1 ? "todo" : "todos"} for
-            "{query}"{" "}
+            &quot;{query}&quot;{" "}
           </p>
         ) : query.length > 0 && results.length === 0 ? (
           <>
-            <p>No results found for "{query}"</p>
-            <img src="/img/no-results.svg" className="flex flex-row justify-center items-center mx-auto h-1/2 w-5/12 py-4" />
+            <p>No results found for &quot;{query}&quot;</p>
+            <img
+              src="/img/no-results.svg"
+              className="flex flex-row justify-center items-center mx-auto h-1/2 w-5/12 py-4"
+            />
           </>
         ) : null}
       </div>
