@@ -2,7 +2,7 @@ import React from "react";
 import ModalCard from "../UI/modal";
 import { useDisclosure } from "@chakra-ui/react";
 import { MdDeleteSweep } from "react-icons/md";
-import Button from "../UI/button";
+import Button from "./button";
 
 interface Type {
   deleteTodo: () => void;

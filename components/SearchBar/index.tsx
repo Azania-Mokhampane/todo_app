@@ -4,26 +4,20 @@ import Fuse from "fuse.js";
 import { DataType } from "../../utils/types";
 import { initialState } from "../../utils/store";
 import { useRecoilState } from "recoil";
-import EditTodo from "../actions/editTodo";
-import { RiCheckboxCircleFill } from "react-icons/ri";
-import Delete from "../actions/confirmDelete";
+
+import SearchResults from "./searchResults";
 
 type Props = {
   data: DataType[];
   show: boolean;
   showHandler: () => void;
+  editVal: string | undefined;
+  edit: (id: string) => void;
 };
 
-const SearchBar = (props: any) => {
+const SearchBar = (props: Props) => {
   const [query, setQuery] = useState<string>("");
-  const [showResults, setShowResults] = useRecoilState(initialState);
-  const [complete, setcomplete] = useState(false);
-  const deleteTodo = () => {
-    props.delete(props.index);
-  };
-  const Done = () => {
-    setcomplete(!complete);
-  };
+  const [___, setShowResults] = useRecoilState(initialState);
 
   const options = {
     keys: ["todo"],
@@ -33,7 +27,7 @@ const SearchBar = (props: any) => {
 
   const results = props.data && fuse.search(query);
 
-  if (results.length > 0) {
+  if (results.length > 0 || query.length) {
     setShowResults(true);
   }
   if (query.trim().length === 0) {
@@ -60,30 +54,21 @@ const SearchBar = (props: any) => {
           </div>
         </div>
       )}
+      <div className="text-center py-3 font-semibold">
+        {results.length ? (
+          <p>
+            Found {results.length} {results.length === 1 ? "todo" : "todos"} for
+            "{query}"{" "}
+          </p>
+        ) : query.length > 0 && results.length === 0 ? (
+          <>
+            <p>No results found for "{query}"</p>
+            <img src="/img/no-results.svg" className="flex flex-row justify-center items-center mx-auto h-1/2 w-5/12 py-4" />
+          </>
+        ) : null}
+      </div>
 
-      {results &&
-        results.map((item: any) => (
-          <div
-            key={item.item.id}
-            className="flex flex-row justify-between mx-auto bg-pink-300 p-3 pl-4 rounded-lg text-lg m-3 w-11/12"
-          >
-            <h1 className=" font-semibold ">{item.item.todo}</h1>
-            <div className="flex flex-row gap-4 ">
-              <EditTodo value={props.editVal} edit={props.edit} />
-              <button
-                onClick={Done}
-                className="transition ease-in-out  md:hover:scale-150 text-xl md:text-2xl duration-300"
-              >
-                {!complete ? (
-                  <RiCheckboxCircleFill />
-                ) : (
-                  <RiCheckboxCircleFill className="text-green-500" />
-                )}
-              </button>
-              {/* <Delete deleteTodo={deleteTodo} /> */}
-            </div>
-          </div>
-        ))}
+      <SearchResults results={results} />
     </>
   );
 };

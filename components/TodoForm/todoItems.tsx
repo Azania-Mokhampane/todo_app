@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Delete from "../actions/confirmDelete";
+import Delete from "../Buttons/confirmDelete";
 import { RiCheckboxCircleFill } from "react-icons/ri";
-import EditTodo from "../actions/editTodo";
+import EditTodo from "../Buttons/editTodo";
 import { TodoListTypes } from "../../utils/types";
 
 const TodoItem = (props: TodoListTypes) => {
