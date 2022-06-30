@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
+import { IoMdClose } from "react-icons/io";
 import Fuse from "fuse.js";
 import {  SearchBarProps } from "../../utils/types";
 import { initialState } from "../../utils/store";
@@ -45,6 +46,11 @@ const SearchBar = (props: SearchBarProps) => {
               className="focus:outline-0 flex flex-row w-full bg-inherit"
               placeholder="Search Todo..."
             />
+            <div className="flex items-center">
+              <button onClick={() => setQuery("")}>
+                <IoMdClose />
+              </button>
+            </div>
           </div>
         </div>
       )}
