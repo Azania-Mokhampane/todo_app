@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import AddButton from "./UI/addButton";
-import ModalCard from "./UI/modal";
-import Button from "./UI/button";
+import AddButton from "../Buttons/addButton";
+import ModalCard from "../UI/modal";
+import Button from "../Buttons/button";
+
+interface SaveTodoType {
+  onSaveTodo: (arg0: { todo: string; id: string }) => void;
+}
 
 const TodoForm = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [task, setTask] = useState("");
 
-  //function that closes the form when cancelled
-  // const onCancel = () => {
-  //   props.hideForm();
-  // };
-
   const onCloseHandler = () => {
     setTask("");
-    onClose();
+    props.onClose();
   };
 
   //evoked when the form submits
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     //todo data
@@ -47,26 +46,14 @@ const TodoForm = (props: any) => {
               <input
                 className="rounded-md text-lg p-2"
                 value={task}
-                onChange={(e: any) => setTask(e.target.value)}
+                onChange={(e) => setTask(e.target.value)}
                 type="text"
                 required
               />
             </div>
             <div className="flex flex-row pt-5 justify-center gap-8 text-white">
-              {/* <button
-                className="bg-pink-500 rounded-md p-1 w-20 hover:bg-pink-600  font-semibold"
-                type="submit"
-              >
-                
-              </button> */}
               <Button type="submit">Add Task</Button>
-              {/* <button
-                className="bg-pink-500 rounded-md p-1 w-20 hover:bg-pink-600 font-semibold"
-                onClick={onCloseHandler}
-                type="button"
-              >
-                Cancel
-              </button> */}
+
               <Button onClick={onCloseHandler} type="button">
                 Cancel
               </Button>

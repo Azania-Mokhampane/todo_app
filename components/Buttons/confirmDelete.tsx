@@ -1,17 +1,23 @@
 import React from "react";
-import ModalCard from "./UI/modal";
+import ModalCard from "../UI/modal";
 import { useDisclosure } from "@chakra-ui/react";
 import { MdDeleteSweep } from "react-icons/md";
-import Button from "./UI/button";
+import Button from "./button";
+import Image from "next/image"
 
-const Delete = (props: any) => {
+interface Type {
+  deleteTodo: () => void;
+}
+const Delete = (props: Type) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <ModalCard isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
         <div className="flex flex-col p-5 justify-center items-center">
           <h1 className="text-xl font-semibold">Confirm Delete</h1>
-          <img
+          <Image
+            width={500}
+            height={500}
             className="p-5 w-3/5"
             src="/img/confirmDelete.svg"
             alt="A person throwing trash in a bin"
@@ -23,7 +29,7 @@ const Delete = (props: any) => {
         </div>
       </ModalCard>
       <button
-        className="transition ease-in-out  hover:scale-150 text-xl md:text-3xl duration-300"
+        className="transition ease-in-out  md:hover:scale-150 text-xl md:text-3xl duration-300"
         onClick={onOpen}
       >
         <MdDeleteSweep />

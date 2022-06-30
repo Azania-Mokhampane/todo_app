@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import TodoForm from "../components/todoForm";
+import TodoForm from "../components/TodoForm/todoForm";
 import Link from "next/link";
-import TodoList from "../components/todoList";
+import TodoList from "../components/TodoForm/todoList";
 import { IoIosArrowBack } from "react-icons/io";
 import ColorMode from "../components/UI/colorMode";
 import { Button } from "@chakra-ui/react";
+import SearchBar from "../components/SearchBar";
+import { initialState } from "../utils/store";
+import { useRecoilState } from "recoil";
 
 type ITodos = {
   todo: string;
@@ -13,8 +16,12 @@ type ITodos = {
 
 const Todo = () => {
   const [todoData, setTodoData] = useState<ITodos[]>([]); //users todo data will be store in the todoData Array
+  const [editVal, setEditVal] = useState<string | undefined>();
+  const [showResults, ___] = useRecoilState(initialState);
 
-  const tasks = todoData.length;
+  const [toogleSearch, setToggleSearch] = useState<boolean>(true);
+
+  // const tasks = todoData.length;
 
   //getting the todo list
   useEffect(() => {
@@ -36,11 +43,24 @@ const Todo = () => {
   };
 
   //deleting the todo item
-  const handleDelete = (index: any) => {
+  const handleDelete = (index: number) => {
     localStorage.removeItem("Todos");
     let newList = todoData;
-    newList.splice(index, 1);
+    newList.splice(index, 1); //removes an element from an array
     setTodoData([...newList]);
+  };
+
+  //updating the todo
+  const editHandler = (id: string) => {
+    // const filteredItem = todoData.filter((item) => item.id !== id);
+    const selectedItem = todoData.find((item) => item.id === id);
+    setEditVal(selectedItem?.todo);
+    // onOpen();
+  };
+
+  //managing the todo list if searching
+  const searchHandler = () => {
+    setToggleSearch(true);
   };
 
   return (
@@ -62,15 +82,36 @@ const Todo = () => {
         </div>
       </div>
 
+      <SearchBar
+        showHandler={searchHandler}
+        show={toogleSearch}
+        data={todoData}
+        editVal={editVal}
+        edit={editHandler}
+      />
+
       <TodoForm onSaveTodo={onSaveTodo} />
-      {tasks === 0 ? null : tasks === 1 ? (
-        <p className="text-center py-3 text-lg">
-          You have {tasks} task remaining
-        </p>
-      ) : (
-        <p className="text-center py-3">You have {tasks} tasks remaining</p>
-      )}
-      <TodoList delete={handleDelete} data={todoData} />
+      {!showResults ? (
+        todoData.length === 0 ? null : todoData.length === 1 ? (
+          <p className="text-center py-3 text-lg">
+            You have {todoData.length} task remaining
+          </p>
+        ) : (
+          <p className="text-center py-3">
+            You have {todoData.length} tasks remaining
+          </p>
+        )
+      ) : null}
+
+      <TodoList
+        editVal={editVal}
+        edit={editHandler}
+        delete={handleDelete}
+        data={todoData}
+        id={""}
+        todo={""}
+        index={0}
+      />
     </div>
   );
 };

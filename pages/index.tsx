@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
-import LandingPage from "../components/landingPage";
 
 const Home: NextPage = () => {
+   const router = useRouter()
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +15,26 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LandingPage />
+
+      <div className={styles.home_container}>
+        <div className={styles.home_icon}>
+          <img src="img/note-list.svg" alt="intro-pic" />
+        </div>
+        <div className={styles.home_header}>
+          <h1>
+            Welcome to <span>My Todo</span>
+          </h1>
+          <p>
+            My todo helps you to stay organized and perform your tasks much
+            faster
+          </p>
+        </div>
+        <div className={styles.home_button}>
+          <div onClick={() => router.push("/todo")}>
+            <button>Start</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
