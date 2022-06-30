@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Delete from "../Buttons/confirmDelete";
 import { RiCheckboxCircleFill } from "react-icons/ri";
-import EditTodo from "../Buttons/editTodo";
+// import EditTodo from "../Buttons/editTodo";
 import { TodoListTypes } from "../../utils/types";
 
 const TodoItem = (props: TodoListTypes) => {
@@ -22,7 +22,7 @@ const TodoItem = (props: TodoListTypes) => {
       >
         <h1 className=" font-semibold ">{props.todo}</h1>
         <div className="flex flex-row gap-4 ">
-          <EditTodo value={props.editVal} edit={props.edit} />
+          {/* <EditTodo value={props.editVal} edit={props.edit} /> */}
           <button
             onClick={Done}
             className="transition ease-in-out  md:hover:scale-150 text-xl md:text-2xl duration-300"

@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-// import LandingPage from "../components/LandingPage/LandingPage";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -16,6 +15,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <div className={styles.home_container}>
         <div className={styles.home_icon}>
           <img src="img/note-list.svg" alt="intro-pic" />

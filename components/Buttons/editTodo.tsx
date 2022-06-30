@@ -4,6 +4,7 @@ import ModalCard from "../UI/modal";
 import Button from "./button";
 import { FiEdit } from "react-icons/fi";
 
+
 interface PropTypes {
   value: string | undefined;
   edit: () => void;
