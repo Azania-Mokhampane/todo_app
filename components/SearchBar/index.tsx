@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import Fuse from "fuse.js";
-import { DataType } from "../../utils/types";
+import {  SearchBarProps } from "../../utils/types";
 import { initialState } from "../../utils/store";
 import { useRecoilState } from "recoil";
 
 import SearchResults from "./searchResults";
 
-type Props = {
-  data: DataType[];
-  show: boolean;
-  showHandler: () => void;
-  editVal: string | undefined;
-  edit: (id: string) => void;
-};
 
-const SearchBar = (props: Props) => {
+
+const SearchBar = (props: SearchBarProps) => {
   const [query, setQuery] = useState<string>("");
   const [___, setShowResults] = useRecoilState(initialState);
 
