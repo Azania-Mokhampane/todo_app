@@ -21,7 +21,7 @@ const Todo = () => {
 
   const [toogleSearch, setToggleSearch] = useState<boolean>(true);
 
-  const tasks = todoData.length;
+  // const tasks = todoData.length;
 
   //getting the todo list
   useEffect(() => {
@@ -92,12 +92,14 @@ const Todo = () => {
 
       <TodoForm onSaveTodo={onSaveTodo} />
       {!showResults ? (
-        tasks === 0 ? null : tasks === 1 ? (
+        todoData.length === 0 ? null : todoData.length === 1 ? (
           <p className="text-center py-3 text-lg">
-            You have {tasks} task remaining
+            You have {todoData.length} task remaining
           </p>
         ) : (
-          <p className="text-center py-3">You have {tasks} tasks remaining</p>
+          <p className="text-center py-3">
+            You have {todoData.length} tasks remaining
+          </p>
         )
       ) : null}
 

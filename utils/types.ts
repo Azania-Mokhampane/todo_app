@@ -12,3 +12,11 @@ export type TodoListTypes = {
   data: DataType[];
   editVal: string | undefined;
 };
+
+export type SearchBarProps = {
+  data: DataType[];
+  show: boolean;
+  showHandler: () => void;
+  editVal: string | undefined;
+  edit: (id: string) => void;
+};
