@@ -82,13 +82,7 @@ const Todo = () => {
         </div>
       </div>
 
-      <SearchBar
-        showHandler={searchHandler}
-        show={toogleSearch}
-        data={todoData}
-        editVal={editVal}
-        edit={editHandler}
-      />
+  
 
       <TodoForm onSaveTodo={onSaveTodo} />
       {!showResults ? (

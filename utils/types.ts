@@ -8,7 +8,7 @@ export type TodoListTypes = {
   todo: string;
   index: number;
   delete: (index: number) => void;
-  edit: () => void;
+  edit: (id: string) => void;
   data: DataType[];
   editVal: string | undefined;
 };
