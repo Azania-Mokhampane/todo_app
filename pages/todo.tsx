@@ -108,9 +108,7 @@ const Todo = () => {
         edit={editHandler}
         delete={handleDelete}
         data={todoData}
-        id={""}
-        todo={""}
-        index={0}
+
       />
     </div>
   );

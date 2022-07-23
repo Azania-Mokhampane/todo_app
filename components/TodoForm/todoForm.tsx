@@ -14,7 +14,7 @@ const TodoForm = (props: any) => {
 
   const onCloseHandler = () => {
     setTask("");
-    props.onClose();
+    onClose();
   };
 
   //evoked when the form submits
