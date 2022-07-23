@@ -6,9 +6,9 @@ import { initialState } from "../../utils/store";
 import { useRecoilState } from "recoil";
 
 interface PropTypes {
-  id: string;
-  todo: string;
-  index: number;
+  id?: string;
+  todo?: string;
+  index?: number;
   delete: (index: number) => void;
   edit: (id: string) => void;
   data: DataType[];
